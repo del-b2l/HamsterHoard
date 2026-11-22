@@ -1,0 +1,6 @@
+engine/build/
+godot/.godot/
+godot/user://
+*.tmp
+*.stop
+results/*.csv
