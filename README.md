@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # HamsterHoard — minimal two-week implementation
 
 A deliberately small Godot 4 + C++17 project implementing the proposal's core:
@@ -121,7 +120,3 @@ your own `--output` and `--csv` paths.
   file bridge with TCP.
 - This project is a starter implementation. Understand, test, document and adapt
   every part before submission; be prepared to explain it in the viva.
-=======
-# HamsterHoard
-Hybrid MPI + OpenMP Island-Model Genetic Algorithm for the Traveling Salesman Problem
->>>>>>> 337b992eca0baa602b926fdb06d44a081b5e0588
