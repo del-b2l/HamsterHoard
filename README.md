@@ -111,9 +111,3 @@ your own `--output` and `--csv` paths.
 - For 5,000–10,000 cities and 10,000+ individuals per island, memory/runtime can
   become very large. Increase sizes gradually and profile before attempting the
   proposal's maximum values.
-- The first version sends snapshots through a shared local file rather than live
-  sockets. This keeps the two-week deliverable buildable and integrated: Godot
-  launches, controls and monitors the computation. If time remains, replace the
-  file bridge with TCP.
-- This project is a starter implementation. Understand, test, document and adapt
-  every part before submission; be prepared to explain it in the viva.
