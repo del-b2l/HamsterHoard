@@ -1,15 +1,12 @@
-# HamsterHoard — minimal two-week implementation
+# HamsterHoard 
 
-A deliberately small Godot 4 + C++17 project implementing the proposal's core:
+A Godot 4 + C++17 project implementing the proposal's core:
 - TSP solved by a genetic algorithm (permutation chromosomes, tournament selection,
   ordered crossover, swap/inversion mutation, elitism).
 - OpenMP parallel fitness evaluation and offspring generation within each island.
 - MPI island model: one population per rank, ring migration of the best route.
 - Godot 3D viewer/controller: launches the MPI executable and visualizes snapshots.
 - CSV timing output for sequential (1 rank × 1 thread), OpenMP, MPI and hybrid runs.
-
-This is a starter project, not a claim that the large proposal-scale workload has already
-been benchmarked. Start with the small defaults, validate correctness, then scale up.
 
 ## Requirements
 
