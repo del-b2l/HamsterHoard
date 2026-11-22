@@ -4,3 +4,4 @@ godot/user://
 *.tmp
 *.stop
 results/*.csv
+.vscode/
