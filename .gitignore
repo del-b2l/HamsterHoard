@@ -5,3 +5,12 @@ godot/user://
 *.stop
 results/*.csv
 .vscode/
+
+# Compiled output
+*.exe
+*.obj
+*.lib
+*.dll
+
+# Temporary snapshot
+snapshot.json
