@@ -51,8 +51,8 @@ static Config parse_args(int argc, char** argv) {
         else if (a == "--csv") c.csv = value();
         else if (a == "--help") {
             std::cout << "--cities N --population N --generations N --threads N "
-                         "--migration-interval N --migration-count N --seed N "
-                         "--output PATH --csv PATH\n";
+                         "--migration-interval N --migration-count N --seed N"
+                         "--output FILE --csv FILE\n";
             std::exit(0);
         }
     }
@@ -277,19 +277,30 @@ int main(int argc, char** argv) {
                 }
             }
 
-            int stop = 0;
-            if (rank == 0 && !cfg.output.empty()) {
-                std::ifstream flag(cfg.output + ".stop");
-                if (flag.good()) stop = 1;
+            if (!cfg.output.empty()) {
+                int stop = 0;
+
+                if (rank == 0) {
+                    std::ifstream flag(cfg.output + ".stop");
+                    if (flag.good()) stop = 1;
+                }
+
+                MPI_Bcast(&stop, 1, MPI_INT, 0, MPI_COMM_WORLD);
+
+                if (stop) break;
             }
-            MPI_Bcast(&stop, 1, MPI_INT, 0, MPI_COMM_WORLD);
-            if (stop) break;
         }
 
-        MPI_Barrier(MPI_COMM_WORLD);
         const double local_elapsed = MPI_Wtime() - start;
         double elapsed = 0.0;
-        MPI_Allreduce(&local_elapsed, &elapsed, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+        MPI_Allreduce(
+            &local_elapsed,
+            &elapsed,
+            1,
+            MPI_DOUBLE,
+            MPI_MAX,
+            MPI_COMM_WORLD
+        );
 
         // Final best after the last offspring generation.
         #pragma omp parallel for schedule(static)
