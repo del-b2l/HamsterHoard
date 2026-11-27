@@ -278,9 +278,9 @@ The exact folder structure may vary depending on the final project organization.
 HamsterHoard was developed as a university parallel-computing project.
 
 **Team members:**
-- [Member 1]
-- [Member 2]
-- [Member 3]
+- Me
+- Myself
+- I
 
 ## License
 
