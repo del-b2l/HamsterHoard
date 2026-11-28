@@ -16,6 +16,7 @@
 #include <utility>
 #include <string>
 #include <vector>
+#include <thread>
 
 struct City { double x = 0.0, y = 0.0; };
 using Route = std::vector<int>;
@@ -30,6 +31,7 @@ struct Config {
     unsigned seed = 42;
     std::string output;
     std::string csv;
+    int delay_ms = 0;
 };
 
 static Config parse_args(int argc, char** argv) {
@@ -47,6 +49,7 @@ static Config parse_args(int argc, char** argv) {
         else if (a == "--migration-interval") c.migration_interval = std::stoi(value());
         else if (a == "--migration-count") c.migration_count = std::stoi(value());
         else if (a == "--seed") c.seed = static_cast<unsigned>(std::stoul(value()));
+        else if (a == "--delay-ms") c.delay_ms = std::stoi(value());
         else if (a == "--output") c.output = value();
         else if (a == "--csv") c.csv = value();
         else if (a == "--help") {
@@ -289,6 +292,8 @@ int main(int argc, char** argv) {
 
                 if (stop) break;
             }
+            if (cfg.delay_ms > 0)
+                std::this_thread::sleep_for(std::chrono::milliseconds(cfg.delay_ms));
         }
 
         const double local_elapsed = MPI_Wtime() - start;
